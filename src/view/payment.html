@@ -9,29 +9,17 @@
 <body>
 	<%= require('html-loader!./common/nav.html') %>
 	<%= require('html-loader!./common/search.html') %>
-
-	<div class="order-confirm">
-		<div class="container">
-			<div class="crumbs">
-				<a href="/" class="link">首页</a>
-				<i class="fa fa-angle-right"></i>
-				<span class="link-top">
-					<%= htmlWebpackPlugin.options.title %>
-				</span>
-			</div>
-		</div>
+	<div class="order-list">
 		<div class="container clearfix">
-			<div class="shipping-box">
-                 
-			</div>
-			<div class="product-box">
-				
-			</div>
-			<div class="modal-box">
-				
+			<%= require('html-loader!./common/side.html') %>
+			<div class="order-content">
+				<div class="order-box">
+					
+				</div>
 			</div>
 		</div>
 	</div>
+
 	<%= require('html-loader!./common/footer.html') %>
 </body>
 </html>

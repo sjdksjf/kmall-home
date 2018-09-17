@@ -12,7 +12,7 @@ var _util = require('util');
 var _product = require('service/product')
 
 var tpl = require('./index.tpl')
-
+ 
 var page = {
 	listParams:{
 		keyword:_util.getParamFromUrl('keyword') || '',
@@ -73,16 +73,19 @@ var page = {
 		? (delete this.listParams.keyword)
 		: (delete this.listParams.categoryId);
 		_product.getProductList(this.listParams,function(result){
-
+            $('.product-list-box').html('<div class="loaning-box"></div>');  
 			var list = result.list.map(function(product){
+			
+				product.image = product.images.split(',')[0];
+				/*
 				if(product.images){
 					product.image = product.images.split(',')[0];
 				}else{
 					product.image = require('images/product-default.jpg')
 				}
+				*/
 				return product;
 			});
-
 			var html = _util.render(tpl,{
 				list:list
 			});

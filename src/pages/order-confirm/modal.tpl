@@ -22,7 +22,6 @@
 							<i class="fa fa-building"></i>
 						</label>
 						<select name="province" class="province-select">
-							 <option value="">请选择</option>
 						</select>
 						<select name="city" class="city-select">
 							 <option value="">请选择</option>

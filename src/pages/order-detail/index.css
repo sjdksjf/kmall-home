@@ -1,0 +1,56 @@
+
+.form-item{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+.label-item{
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+}
+.content-item{
+	display: inline-block;
+	width: 400px;
+	padding-left: 40px;
+}
+.order-content{
+	float: left;
+    width: 910px;
+    min-height: 600px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/*
+订单列表
+*/
+.order-list .product-info{
+	width: 70%;
+}
+.order-list .product-price{
+	width: 10%;
+}
+.order-list .product-count{
+	width: 10%;
+}
+.order-list .product-totalPrice{
+	width: 10%;
+}
+
+/*
+ 订单详情
+*/
+.pandel-body .detail-item li{
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+.pandel-body .detail-item .order-paymentType .money{
+	color: red;
+}
+
+.pandel-body .order-payment .payment{
+	width: 100px;
+}

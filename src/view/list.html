@@ -9,8 +9,16 @@
 <body>
 	<%= require('html-loader!./common/nav.html') %>
 	<%= require('html-loader!./common/search.html') %>
-
 	<div class="list">
+		<div class="container">
+			<div class="crumbs">
+				<a href="/" class="link">首页</a>
+				<i class="fa fa-angle-right"></i>
+				<span class="link-top">
+					<%= htmlWebpackPlugin.options.title %>
+				</span>
+			</div>
+		</div>
 		<div class="container clearfix">
 			<ul class="sort clearfix">
 				<li class="sort-item default active">默认排序</li>

@@ -35,6 +35,7 @@ var page = {
 			}
 			//取消
 			else{
+				console.log(productId)
 				_cart.unselectOne({productId:productId},function(cart){
 					_this.renderCart(cart)
 				},function(msg){

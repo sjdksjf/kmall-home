@@ -30,6 +30,9 @@ var _util = {
 	showErrorMsg:function(msg){
 		alert(msg);
 	},
+	showSuccessMsg:function(msg){
+		alert(msg);
+	},
 	confirm:function(msg){
         return window.confirm(msg);
 	},

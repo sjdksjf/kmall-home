@@ -35,10 +35,11 @@
 /*
 商品列表
 */
+
 .product-item{
 	float: left;
 	width: 208px;
-	height: 280px;
+	height: 308px;
 	margin-right: 10px;
 	margin-bottom: 20px;
 	background-color: #fff;
@@ -61,14 +62,26 @@
 	margin-top: 20px;
 }
 .product-price{
-	font-size: 18px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
 	color: #f21;
+	margin-bottom: 5px;
 }
+/*
+ text-overflow:ellipsis;//值为clip表示剪切，ellipsis时为显示省略号
+ overflow:hidden;
+ white-space:nowrap;
+*/
 .product-name{
 	height: 40px;
 	line-height: 20px;
 	color: #333;
 	font-size: 14px;
+	margin-bottom: 5px;
+	text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
 }
 
 
