@@ -1,5 +1,6 @@
+
 var _cities = {
-    cityInfo : {
+	cityInfo : {
         '北京':['北京'],
         '上海':['上海'],
         '天津':['天津'],
@@ -36,15 +37,15 @@ var _cities = {
         '台湾':['台北','台南','其他']
     },
     getProvinces:function(){
-        let provinces = [];
+    	let provinces = [];
 
-        for(var item in this.cityInfo){
-            provinces.push(item);
-        }
-        return provinces;
+    	for(var item in this.cityInfo){
+    		provinces.push(item);
+    	}
+    	return provinces;
     },
     getCities:function(provinceName){
-        return this.cityInfo[provinceName] || [];
+    	return this.cityInfo[provinceName] || [];
     }
 }
 

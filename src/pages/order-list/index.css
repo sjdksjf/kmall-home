@@ -1,31 +1,4 @@
 
-.form-item{
-	height: 30px;
-	line-height: 30px;
-	font-size: 14px;
-}
-.label-item{
-	display: inline-block;
-	width: 100px;
-	text-align: right;
-}
-.content-item{
-	display: inline-block;
-	width: 400px;
-	padding-left: 40px;
-}
-.order-content{
-	float: left;
-    width: 910px;
-    min-height: 600px;
-    background-color: #fff;
-    box-sizing: border-box;
-    padding: 20px;
-}
-
-/*
-订单列表
-*/
 .order-list .product-info{
 	width: 70%;
 }
@@ -38,14 +11,39 @@
 .order-list .product-totalPrice{
 	width: 10%;
 }
-.order-box .pandel-body .product-item li:first-child{
-	margin-left: 0px;
-}
-.order-box .pandel-body .product-item li{
-	margin-left: 20px;
+
+.order-list .product-item{
+	margin-bottom: 0px;
+	margin-top: -1px;
 }
 
-.pandel-body .detail-item .order-paymentType .money{
-	color: red;
+.order-list .order-title{
+	margin-top: 20px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #fafafa;
+	padding: 0 10px;
 }
+.order-list .order-title li{
+	float: left;
+	margin-right: 10px;
+	color: #666;
+}
+.order-list .order-title li.order-payment .text{
+	color: #f21;
+	font-size: 14px;
+	font-weight: bold;
+}
+.order-list .order-title li.order-detail{
+	float: right;
+}
+
+.order-list .order-title li.order-shipping-name .text{
+	width: 100px;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+}
+
 

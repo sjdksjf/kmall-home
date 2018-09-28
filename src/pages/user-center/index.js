@@ -19,6 +19,7 @@ var page = {
 		_side.render('user-center')
 	},
 	loadUserInfo:function(){
+		$('.side-content').html("<div class='loading'></div>");
 		_user.getUserInfo(function(userInfo){
 			var html = _util.render(tpl,userInfo);
 			$('.side-content').html(html)

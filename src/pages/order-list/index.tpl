@@ -1,38 +1,6 @@
-<div class="order-box">
-     <h2 class="panel-header">订单地址</h2>
-     <div class="pandel-body">
-		<ul class="product-item" data-product-id="{{product._id}}">
-            <li class="order-orderNo">
-	             <span>订单号：</span>
-	             <span>5655413135</span>
-            </li>
-            <li class="order-payment">
-	             <span>支付方法：</span>
-	             <span>支付宝</span>
-            </li>
-            <li class="order-paymentType">
-	             <span>支付金额：</span>
-	             <span class="money">$108</span>
-            </li>
-            <li class="order-paymentType">
-	             <span>收件人：</span>
-	             <span>哒哒哒</span>
-            </li>
-			<li class="product-dizhi">
-				<span>收件地址：</span>
-	            <span>商丘市民权县</span>
-			</li>
-			<li class="product-phone">
-				<span>手机号：</span>
-	            <span>13256789456</span>
-			</li>
-		</ul>
-	</div> 	
-</div>
-
-{{^notEmpty}}
+{{#notEmpty}}
 <div class="panel">
-	<h2 class="panel-header">商品清单</h2>
+	<h2 class="panel-header">订单列表</h2>
 	<div class="pandel-body">
 		<ul class="product-title clearfix">
 			<li class="product-info">
@@ -48,34 +16,56 @@
 				小计
 			</li>
 		</ul>
-		{{#cartList}}
-		<ul class="product-item" data-product-id="{{product._id}}">
-			<li class="product-info">
-				<a href="./detail.html?productId={{product._id}}" class="link" target="_blank">
-					<img src="{{product.image}}" alt="">
-					<span>{{product.name}}</span>
-				</a>
-			</li>
-			<li class="product-price">
-				￥{{product.price}}
-			</li>
-			<li class="product-count">
-				{{count}}
-			</li>
-			<li class="product-totalPrice">
-				￥{{totalPrice}}
-			</li>	
-		</ul>
-		{{/cartList}}
-		<ul class="product-footer">
-			<li class="product-submit">
-				<span class="total-price-text">总价:</span>
-			 	<span class="total-price">￥{{totalCartPrice}}</span>
-			</li>
-		</ul>		
+		{{#list}}
+			<ul class="order-title">
+				<li class="order-no">
+					<span class="lable">订单号:</span>
+					<span class="text">{{orderNo}}</span>
+				</li>
+				<li class="order-create-time">
+					<span class="lable">创建时间:</span>
+					<span class="text">{{createdTime}}</span>
+				</li>
+				<li class="order-status">
+					<span class="lable">订单状态:</span>
+					<span class="text">{{statusDesc}}</span>
+				</li>
+				<li class="order-shipping-name">
+					<span class="lable">收件人:</span>
+					<span class="text">{{shipping.name}}</span>
+				</li>
+				<li class="order-payment">
+					<span class="lable">订单金额:</span>
+					<span class="text">￥{{payment}}</span>
+				</li>
+				<li class="order-detail">
+					<a class="link" target="_blank" href="./order-detail.html?orderNo={{orderNo}}">查看详情</a>
+				</li>											
+			</ul>
+			{{#productList}}
+				<ul class="product-item"">
+					<li class="product-info text-ellipsis">
+						<a href="./detail.html?productId={{productId}}" class="link" target="_blank">
+							<img src="{{image}}" alt="">
+							<span>{{name}}</span>
+						</a>
+					</li>
+					<li class="product-price">
+						￥{{price}}
+					</li>
+					<li class="product-count">
+						{{count}}
+					</li>
+					<li class="product-totalPrice">
+						￥{{totalPrice}}
+					</li>	
+				</ul>
+			{{/productList}}			
+		{{/list}}		
 	</div>
 </div>
 {{/notEmpty}}
-{{#notEmpty}}
+
+{{^notEmpty}}
 <p class="empty-message">您还没有订单!!!</p>
 {{/notEmpty}}

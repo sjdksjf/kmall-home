@@ -5,7 +5,7 @@ var _product = {
 
 	getProductList:function(data,success,error){
 		_util.request({
-			url:'/product/homeList',
+			url:'/product/home/list',
 			data:data,
 			success:success,
 			error:error		
@@ -13,7 +13,7 @@ var _product = {
 	},
 	getProductDetail:function(data,success,error){
 		_util.request({
-			url:'/product/homeDetail',
+			url:'/product/home/detail',
 			data:data,
 			success:success,
 			error:error		

@@ -2,67 +2,46 @@
 require('pages/common/nav')
 require('pages/common/search')
 require('pages/common/footer')
+
 require('./index.css')
 
 var _util = require('util');
 var _payment = require('service/payment');
-var _side = require('pages/common/side');
 
-var tpl = require('./index.tpl')
+var tpl = require('./index.tpl');
 
 var page = {
-	Params:{	
-		page:_util.getParamFromUrl('page') || 1,
+	params:{
+		orderNo : _util.getParamFromUrl('orderNo') || '',
 	},
 	init:function(){
 		this.onload();
-		this.loadpaymentInfo();
-		this.initPagination();
-		this.loadpaymentList();
-	},
-	initPagination:function(){
-		var _this = this;
-		/*	
-		var $pagination = $('.pagination-box');
-		$pagination.on('page-change',function(e,value){
-			_this.listParams.page = value;
-			_this.loadpaymentList();
-		});
-		$pagination.pagination();
-		*/
 	},
 	onload:function(){
-		_side.render('order-center')
+		if(this.params.orderNo){
+			this.loadPaymentDetail();
+		}
 	},
-	loadpaymentInfo:function(){
-		/*
-		_payment.getUserInfo(function(order){
-			var html = _util.render(tpl,order);
-			$('.order-content').html(html)
-		})
-		*/
-	},
-	loadpaymentList:function(){
-
-		var html = _util.render(tpl);
-	    $('.order-box').html(html)
-		/*
-		this.listParams.categoryId 
-		? (delete this.listParams.keyword)
-		: (delete this.listParams.categoryId);
-		*/
-        
-		_payment.getorderList(this.Params,function(result){
-
-			var html = _util.render(tpl,{
-				list:list
-			});
-			$('.order-box').html(html)
-          
-
+	loadPaymentDetail:function(){
+		var _this = this;
+		$('.payment-box').html("<div class='loading'></div>");
+		_payment.getPaymentInfo({orderNo:this.params.orderNo},function(payment){				
+			var html = _util.render(tpl,payment);
+			$('.payment-box').html(html);
+			_this.listenPaymentStatus();
 		},function(msg){
-			_util.showErrorMsg(msg)
+			$('.payment-box').html('<p class="empty-message">获取支付信息出错了,刷新试试看!!!</p>')
 		})
+	},
+	listenPaymentStatus:function(){
+		var _this = this;
+		window.setInterval(function(){
+			_payment.getPaymentStatus({orderNo:_this.params.orderNo},function(result){
+				if(result == true){
+					window.location.href = "./result.html?type=payment&orderNo="+_this.params.orderNo;
+				}
+			})
+		},5000)
 	}
 }
 

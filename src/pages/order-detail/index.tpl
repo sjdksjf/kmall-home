@@ -1,45 +1,50 @@
-<div class="detail-box">
-	<h2 class="panel-header">订单详情</h2>
-    <div class="pandel-body">
-		<ul class="detail-item" data-detail-id="{{detail._id}}">
-            <li class="order-orderNo">
-	             <span>订单号：</span>
-	             <span>5655413135</span>
-            </li>
-            <li class="order-payment">
-	             <span>支付方法：</span>
-	             <span>支付宝</span>
-            </li>
-            <li class="order-paymentType">
-	             <span>支付金额：</span>
-	             <span class="money">$108000</span>
-            </li>
-            <li class="order-state">
-	             <span>支付状态：</span>
-	             <span>未支付</span>
-            </li>
-            <li class="order-paymentType">
-	             <span>收件人：</span>
-	             <span>嘀嘀嘀</span>
-            </li>
-			<li class="product-dizhi">
-				<span>收件地址：</span>
-	            <span>河南六区 战神</span>
-			</li>
-			<li class="product-phone">
-				<span>手机号：</span>
-	            <span>13343604558</span>
-			</li>
-			<li class="order-payment">
-				<a href="javascript:;" class="btn">继续购物</a>
-				<a href="javascript:;" class="btn payment">到游戏中取货</a>
-			</li>
-		</ul>
-	</div> 	
-</div>
 {{#notEmpty}}
+{{#order}}
 <div class="panel">
-	<h2 class="panel-header">商品清单</h2>
+	<h2 class="panel-header">订单信息</h2>
+	<div class="pandel-body">
+		<ul class="order-info">
+			<li class="order-no">
+				<span class="lable">订单号:</span>
+				<span class="text">{{orderNo}}</span>
+			</li>
+			<li class="order-create-time">
+				<span class="lable">创建时间:</span>
+				<span class="text">{{createdTime}}</span>
+			</li>
+			<li class="order-shipping-name">
+				<span class="lable">收件人:</span>
+				<span class="text">{{shipping.name}}({{shipping.phone}})</span>
+			</li>
+			<li class="order-shipping-address">
+				<span class="lable">收件地址:</span>
+				<span class="text">{{shipping.province}}{{shipping.city}}{{shipping.address}}(邮编:{{shipping.zip}})</span>
+			</li>	
+			<li class="order-status">
+				<span class="lable">订单状态:</span>
+				<span class="text">{{statusDesc}}</span>
+			</li>					
+			<li class="order-payment">
+				<span class="lable">订单金额:</span>
+				<span class="text">￥{{payment}}</span>
+			</li>
+			<li class="order-payment-type">
+				<span class="lable">支付方式:</span>
+				<span class="text">{{paymentTypeDesc}}</span>
+			</li>
+			<li class="order-opreation">
+				{{#needPay}}
+				<a href="./payment.html?orderNo={{orderNo}}" class="btn">去支付</a>
+				{{/needPay}}
+				{{#canCancel}}
+				<a href="javascript:;" class="btn btn-cancel">取消</a>
+				{{/canCancel}}
+			</li>												
+		</ul>
+	</div>
+</div>
+<div class="panel">
+	<h2 class="panel-header">商品列表</h2>
 	<div class="pandel-body">
 		<ul class="product-title clearfix">
 			<li class="product-info">
@@ -55,34 +60,30 @@
 				小计
 			</li>
 		</ul>
-		{{#cartList}}
-		<ul class="product-item" data-product-id="{{product._id}}">
-			<li class="product-info">
-				<a href="./detail.html?productId={{product._id}}" class="link" target="_blank">
-					<img src="{{product.image}}" alt="">
-					<span>{{product.name}}</span>
-				</a>
-			</li>
-			<li class="product-price">
-				￥{{product.price}}
-			</li>
-			<li class="product-count">
-				{{count}}
-			</li>
-			<li class="product-totalPrice">
-				￥{{totalPrice}}
-			</li>	
-		</ul>
-		{{/cartList}}
-		<ul class="product-footer">
-			<li class="product-submit">
-				<span class="total-price-text">总价:</span>
-			 	<span class="total-price">￥{{totalCartPrice}}</span>
-			</li>
-		</ul>		
+		{{#productList}}
+			<ul class="product-item"">
+				<li class="product-info text-ellipsis">
+					<a href="./detail.html?productId={{productId}}" class="link" target="_blank">
+						<img src="{{image}}" alt="">
+						<span>{{name}}</span>
+					</a>
+				</li>
+				<li class="product-price">
+					￥{{price}}
+				</li>
+				<li class="product-count">
+					{{count}}
+				</li>
+				<li class="product-totalPrice">
+					￥{{totalPrice}}
+				</li>	
+			</ul>
+		{{/productList}}				
 	</div>
 </div>
+{{/order}}
 {{/notEmpty}}
+
 {{^notEmpty}}
-<p class="empty-message">您还没有订单!!!</p>
+<p class="empty-message">您的订单去火星了!!!</p>
 {{/notEmpty}}

@@ -1,3 +1,4 @@
+
 var _util = require('util')
 
 var _order = {
@@ -18,22 +19,31 @@ var _order = {
 			error:error		
 		})
 	},
-	getUserInfo:function(success,error){
+	getOrderList:function(data,success,error){
 		_util.request({
-			url:'/user/userInfo',
-			success:success,
-			error:error		
-		})
-	},	
-	getorderList:function(data,success,error){
-		_util.request({
-			url:'/order/list',
+			url:'/order/home/list',
 			data:data,
 			success:success,
 			error:error		
 		})
 	},
-
+	getOrder:function(data,success,error){
+		_util.request({
+			url:'/order/home/detail',
+			data:data,
+			success:success,
+			error:error		
+		})
+	},
+	cancelOrder:function(data,success,error){
+		_util.request({
+			url:'/order/cancel',
+			method:'put',
+			data:data,
+			success:success,
+			error:error		
+		})
+	},					
 }
 
 module.exports = _order;

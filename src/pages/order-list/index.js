@@ -1,8 +1,12 @@
 
+
 require('pages/common/nav')
 require('pages/common/search')
 require('pages/common/footer')
 require('./index.css')
+
+//引入分页插件
+require('util/pagination')
 
 var _util = require('util');
 var _order = require('service/order');
@@ -11,64 +15,52 @@ var _side = require('pages/common/side');
 var tpl = require('./index.tpl')
 
 var page = {
-	Params:{	
+	params:{
 		page:_util.getParamFromUrl('page') || 1,
-	},
+	},	
 	init:function(){
-		this.onload();
-		this.loadorderInfo();
 		this.initPagination();
-		this.loadorderList();
+		this.onload();
+		this.loadOrderList();
 	},
 	initPagination:function(){
 		var _this = this;
-		/*	
 		var $pagination = $('.pagination-box');
 		$pagination.on('page-change',function(e,value){
-			_this.listParams.page = value;
-			_this.loadorderList();
+			_this.params.page = value;
+			_this.loadOrderList();
 		});
 		$pagination.pagination();
-		*/
-	},
+	},	
 	onload:function(){
-		_side.render('order-center')
+		_side.render('order-list')
 	},
-	loadorderInfo:function(){
-		/*
-		_order.getUserInfo(function(order){
-			var html = _util.render(tpl,order);
-			$('.order-content').html(html)
-		})
-		*/
-	},
-	loadorderList:function(){
-
-		var html = _util.render(tpl);
-	    $('.order-box').html(html)
-		/*
-		this.listParams.categoryId 
-		? (delete this.listParams.keyword)
-		: (delete this.listParams.categoryId);
-		*/
-        /*
-		_order.getorderList(this.Params,function(result){
+	loadOrderList:function(){
+		$('.order-box').html("<div class='loading'></div>");
+		_order.getOrderList(this.params,function(orders){
+			//图片和时间适配
+			let list = orders.list.map(order=>{
+				order.productList.forEach(product=>{
+					product.image = product.images.split(',')[0];
+				})
+				order.createdTime = new Date(order.createdAt).toLocaleString();
+				return order;
+			});
 
 			var html = _util.render(tpl,{
-				list:list
+				list:list,
+				notEmpty:!!list.length
 			});
 			$('.order-box').html(html)
-             //分页
-			$('.pagination-box').pagination('render',{
-				current:result.current,
-				total:result.total,
-				pageSize:result.pageSize,
-			})
 
+			$('.pagination-box').pagination('render',{
+				current:orders.current,
+				total:orders.total,
+				pageSize:orders.pageSize,
+			})
 		},function(msg){
-			_util.showErrorMsg(msg)
+			$('.order-box').html('<p class="empty-message">获取订单列表出错了,刷新试试看!!!</p>')
 		})
-		*/ 
 	}
 }
 

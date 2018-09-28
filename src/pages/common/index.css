@@ -15,6 +15,7 @@ body{
 .link{
 	text-decoration: none;
 	color: #888;
+	cursor: pointer;
 }
 .link:hover{
 	color: #f12;
@@ -22,6 +23,11 @@ body{
 .link-text{
 	text-decoration: none;
 	color: #888;	
+}
+.text-ellipsis{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .container{
 	width: 1080px;
@@ -122,7 +128,9 @@ body{
 	text-align: right;
 }
 
-/*空白页样式*/
+/*
+空页面
+*/
 .empty-message{
 	text-align: center;
 	padding-top: 100px;
@@ -130,8 +138,9 @@ body{
 	font-size: 30px;
 	color: #0af;
 }
+
 /*
- order-confirm样式
+panel
 */
 .panel{
 	padding: 10px;
@@ -217,20 +226,22 @@ body{
 	top:-2px;
 }
 /*
- 面包屑
+面包屑导航
 */
-.crumbs{
-	height: 20px;
-	line-height: 20px;
-	font-size: 14px;
+.crumb{
+	height: 40px;
+	line-height: 40px;
 	margin-bottom: 10px;
-	color: #666;
+	color: #888;
+	font-size: 14px;
 }
 /*
- loaning-box
+loading
 */
-.loaning-box{
-	width: 260px;
-	height: 260px;
-	background: url('../../images/loading.gif') no-repeat;
+.loading{
+	width: 240px;
+	height: 158px;
+	margin: 50px auto;
+	background: url(../../images/loading.gif) no-repeat;
 }
+

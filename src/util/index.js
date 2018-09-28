@@ -34,7 +34,7 @@ var _util = {
 		alert(msg);
 	},
 	confirm:function(msg){
-        return window.confirm(msg);
+		return window.confirm(msg);
 	},
 	doLogin:function(){
 		window.location.href = './user-login.html?redirect='+encodeURIComponent(window.location.href)
